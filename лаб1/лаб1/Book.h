@@ -2,48 +2,48 @@
 #define BOOK_H
 
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
 class Book {
 private:
-    string author;
-    string title;
+    char author[50];
+    char title[50];
     int year;
-    string group;
+    char group[10];
 
 public:
     Book() {
-        author = "Невідомо";
-        title = "Без назви";
+        strcpy(author, "Невідомо");
+        strcpy(title, "Без назви");
         year = 0;
-        group = "Н";
+        strcpy(group, "Н");
     }
 
-    Book(string a, string t, int y, string g) {
-        author = a;
-        title = t;
+    Book(const char* a, const char* t, int y, const char* g) {
+        strcpy(author, a);
+        strcpy(title, t);
         year = y;
-        group = g;
+        strcpy(group, g);
     }
 
     Book(const Book& other) {
-        author = other.author;
-        title = other.title;
+        strcpy(author, other.author);
+        strcpy(title, other.title);
         year = other.year;
-        group = other.group;
+        strcpy(group, other.group);
     }
 
-    string getAuthor() { return author; }
-    string getTitle() { return title; }
+    const char* getAuthor() { return author; }
+    const char* getTitle() { return title; }
     int getYear() { return year; }
-    string getGroup() { return group; }
+    const char* getGroup() { return group; }
 
-    void setAuthor(string a) { author = a; }
-    void setTitle(string t) { title = t; }
+    void setAuthor(const char* a) { strcpy(author, a); }
+    void setTitle(const char* t) { strcpy(title, t); }
     void setYear(int y) { year = y; }
-    void setGroup(string g) { group = g; }
+    void setGroup(const char* g) { strcpy(group, g); }
 
     void show();
 };

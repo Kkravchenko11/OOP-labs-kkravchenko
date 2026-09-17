@@ -20,29 +20,31 @@ void printTableHeader() {
 void printTable(Book arr[], int size) {
     printTableHeader();
     for (int i = 0; i < size; i++) {
-        arr[i].show()
+        arr[i].show();
     }
     cout << "-------------------------------------------------------------" << endl;
 }
 
 Book createBookFromInput() {
-    string author, title, group;
+    char author[50];
+    char title[50];
+    char group[10];
     int year;
 
     cout << "\n--- Введення даних для книги ---" << endl;
     cout << "Введіть автора: ";
     cin >> ws;
-    getline(cin, author);
+    cin.getline(author, 50);
 
     cout << "Введіть назву: ";
-    getline(cin, title);
+    cin.getline(title, 50);
 
     cout << "Введіть рік випуску: ";
     cin >> year;
 
     cout << "Введіть групу (Х - художня, Н - навчальна, С - довідкова): ";
     cin >> ws;
-    getline(cin, group);
+    cin.getline(group, 10);
 
     return Book(author, title, year, group);
 }

@@ -13,7 +13,8 @@ int main() {
     cout << "=== Створення масивів трьома видами конструкторів ===\n";
 
     Book defaultArr[SIZE];
-    cout << "\nЗаповнення 2-го масиву через введення даних (Варіант №6):";
+
+    cout << "\nЗаповнення 2-го масиву через введення даних:";
     Book paramArr[SIZE] = {
         createBookFromInput(),
         createBookFromInput(),
@@ -49,7 +50,7 @@ int main() {
         }
         else if (choice == 2) {
             int index;
-            string newTitle;
+            char newTitle[50];
             int newYear;
 
             cout << "\nОберіть елемент у 1-му масиві для зміни (0, 1 або 2): ";
@@ -61,12 +62,13 @@ int main() {
 
                 cout << "\nВведіть нову назву книги: ";
                 cin >> ws;
-                getline(cin, newTitle);
+                cin.getline(newTitle, 50);
                 cout << "Введіть новий рік випуску: ";
                 cin >> newYear;
 
                 defaultArr[index].setTitle(newTitle);
                 defaultArr[index].setYear(newYear);
+
                 cout << "\n--- Таблиця, яка вийшла після зміни параметрів (set) ---\n";
                 printTable(defaultArr, SIZE);
             }
