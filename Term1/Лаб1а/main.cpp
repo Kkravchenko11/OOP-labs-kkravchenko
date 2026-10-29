@@ -1,26 +1,7 @@
 #include <iostream>
 #include <windows.h>
+#include "Header.h"
 using namespace std;
-
-class Figure
-{
-private:
-    double a;
-    double b;
-public:
-    Figure(double x, double y = 0)
-    {
-        a = x;
-        b = y;
-    }
-
-    double area()
-    {
-        if (b == 0)
-            return 3.14159265 * a * a;
-        return 0.5 * a * b;
-    }
-};
 
 int main()
 {
