@@ -28,7 +28,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="testdata.txt">
+    <Text Include="test_data.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

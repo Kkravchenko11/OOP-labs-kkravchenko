@@ -17,8 +17,8 @@ int main()
 
     const int SIZE = 3;
     Book* arr = new Book[SIZE];
-    const string textDataFile = "test_data.txt";
-    const string binaryFile = "books.dat";
+    const char* textDataFile = "test_data.txt";
+    const char* binaryFile = "books.dat";
 
     int choice;
     do
@@ -44,7 +44,7 @@ int main()
             }
             else if (choice == 4)
             {
-                cout << "Номер елемента (1.." << SIZE << "): ";
+                cout << "Номер елемента (1,2,3): ";
                 int num;
                 cin >> num;
                 cin.ignore();
@@ -74,7 +74,7 @@ int main()
             }
             else if (choice == 5)
             {
-                cout << "Номер об'єкта для збереження (1.." << SIZE << "): ";
+                cout << "Номер об'єкта для збереження (1,2,3): ";
                 int num;
                 cin >> num;
                 cin.ignore();

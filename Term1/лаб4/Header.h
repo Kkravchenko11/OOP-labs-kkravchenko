@@ -1,14 +1,16 @@
-#pragma once
+#ifndef HEADER_H
+#define HEADER_H
+
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <string>
 #include <fstream>
-#include <stdexcept>
+#include <exception>
 using namespace std;
 
 const int AUTHOR_LEN = 50;
 const int TITLE_LEN = 50;
 const int GROUP_LEN = 10;
+const int MESSAGE_LEN = 120;
 
 class Book
 {
@@ -40,35 +42,37 @@ public:
 class IndexException : public exception
 {
 private:
-    string message;
+    char message[MESSAGE_LEN];
 
 public:
-    IndexException(const string& msg);
+    IndexException(const char* msg);
     const char* what() const noexcept override;
 };
 
 class FileException : public exception
 {
 private:
-    string message;
+    char message[MESSAGE_LEN];
 
 public:
-    FileException(const string& msg);
+    FileException(const char* msg);
     const char* what() const noexcept override;
 };
 
 void showHeader();
 void showBook(const Book& b);
-void showArray(Book* arr, int size);
+void showArray(const Book* arr, int size);
 
 void inputBookFromKeyboard(Book& b);
 void inputArrayFromKeyboard(Book* arr, int size);
-void inputArrayFromTextFile(Book* arr, int size, const string& filename);
+void inputArrayFromTextFile(Book* arr, int size, const char* filename);
 
-void saveOneBookToFile(Book* arr, int size, int index, const string& filename);
-void showOneBookFromFile(const string& filename, int index);
+void saveOneBookToFile(const Book* arr, int size, int index, const char* filename);
+void showOneBookFromFile(const char* filename, int index);
 
-void saveArrayToFile(Book* arr, int size, const string& filename);
-int loadArrayFromFile(Book* arr, int maxSize, const string& filename);
+void saveArrayToFile(const Book* arr, int size, const char* filename);
+int loadArrayFromFile(Book* arr, int maxSize, const char* filename);
 
 void printMenu();
+
+#endif

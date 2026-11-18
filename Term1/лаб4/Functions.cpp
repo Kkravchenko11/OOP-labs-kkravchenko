@@ -1,31 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
 #include "Header.h"
 using namespace std;
 
 Book::Book()
 {
-    strcpy(author, "Невідомий автор");
-    strcpy(title, "Без назви");
+    setAuthor("Невідомий автор");
+    setTitle("Без назви");
     year = 2000;
-    strcpy(group, "Н");
+    setGroup("Н");
 }
 
 Book::Book(const char* a, const char* t, int y, const char* g)
 {
-    strcpy(author, a);
-    strcpy(title, t);
+    setAuthor(a);
+    setTitle(t);
     year = y;
-    strcpy(group, g);
+    setGroup(g);
 }
 
 Book::Book(const Book& other)
 {
-    strcpy(author, other.author);
-    strcpy(title, other.title);
+    setAuthor(other.author);
+    setTitle(other.title);
     year = other.year;
-    strcpy(group, other.group);
+    setGroup(other.group);
 }
 
 const char* Book::getAuthor() const { return author; }
@@ -33,10 +35,25 @@ const char* Book::getTitle() const { return title; }
 int Book::getYear() const { return year; }
 const char* Book::getGroup() const { return group; }
 
-void Book::setAuthor(const char* a) { strcpy(author, a); }
-void Book::setTitle(const char* t) { strcpy(title, t); }
+void Book::setAuthor(const char* a)
+{
+    strncpy(author, a, AUTHOR_LEN - 1);
+    author[AUTHOR_LEN - 1] = '\0';
+}
+
+void Book::setTitle(const char* t)
+{
+    strncpy(title, t, TITLE_LEN - 1);
+    title[TITLE_LEN - 1] = '\0';
+}
+
 void Book::setYear(int y) { year = y; }
-void Book::setGroup(const char* g) { strcpy(group, g); }
+
+void Book::setGroup(const char* g)
+{
+    strncpy(group, g, GROUP_LEN - 1);
+    group[GROUP_LEN - 1] = '\0';
+}
 
 void Book::saveToFile(ofstream& out) const
 {
@@ -48,38 +65,91 @@ void Book::loadFromFile(ifstream& in)
     in.read(reinterpret_cast<char*>(this), sizeof(Book));
 }
 
-IndexException::IndexException(const string& msg) : message(msg) {}
-const char* IndexException::what() const noexcept { return message.c_str(); }
+IndexException::IndexException(const char* msg)
+{
+    strncpy(message, msg, MESSAGE_LEN - 1);
+    message[MESSAGE_LEN - 1] = '\0';
+}
 
-FileException::FileException(const string& msg) : message(msg) {}
-const char* FileException::what() const noexcept { return message.c_str(); }
+const char* IndexException::what() const noexcept { return message; }
+
+FileException::FileException(const char* msg)
+{
+    strncpy(message, msg, MESSAGE_LEN - 1);
+    message[MESSAGE_LEN - 1] = '\0';
+}
+
+const char* FileException::what() const noexcept { return message; }
+
+const int COL_AUTHOR = 25;
+const int COL_TITLE = 25;
+const int COL_YEAR = 6;
+const int COL_GROUP = 8;
+const int TABLE_WIDTH = 2 + COL_AUTHOR + 3 + COL_TITLE + 3 + COL_YEAR + 3 + COL_GROUP + 2;
+
+static int visibleLength(const char* s)
+{
+    int n = 0;
+    while (*s != '\0')
+    {
+        if ((static_cast<unsigned char>(*s) & 0xC0) != 0x80)
+            n++;
+        s++;
+    }
+    return n;
+}
+
+static void printCell(const char* s, int width)
+{
+    cout << s;
+    for (int i = visibleLength(s); i < width; i++)
+        cout << ' ';
+}
+
+static void printLine()
+{
+    for (int i = 0; i < TABLE_WIDTH; i++)
+        cout << '-';
+    cout << endl;
+}
 
 void showHeader()
 {
-    cout << "| " << left;
-    cout.width(20); cout << "Автор";
-    cout << "| "; cout.width(20); cout << "Назва";
-    cout << "| "; cout.width(6);  cout << "Рік";
-    cout << "| "; cout.width(8);  cout << "Група";
-    cout << "|" << endl;
-    cout << string(62, '-') << endl;
+    printLine();
+    cout << "| ";
+    printCell("Автор", COL_AUTHOR);
+    cout << " | ";
+    printCell("Назва", COL_TITLE);
+    cout << " | ";
+    printCell("Рік", COL_YEAR);
+    cout << " | ";
+    printCell("Група", COL_GROUP);
+    cout << " |" << endl;
+    printLine();
 }
 
 void showBook(const Book& b)
 {
-    cout << "| " << left;
-    cout.width(20); cout << b.getAuthor();
-    cout << "| "; cout.width(20); cout << b.getTitle();
-    cout << "| "; cout.width(6);  cout << b.getYear();
-    cout << "| "; cout.width(8);  cout << b.getGroup();
-    cout << "|" << endl;
+    char yearText[20];
+    snprintf(yearText, 20, "%d", b.getYear());
+
+    cout << "| ";
+    printCell(b.getAuthor(), COL_AUTHOR);
+    cout << " | ";
+    printCell(b.getTitle(), COL_TITLE);
+    cout << " | ";
+    printCell(yearText, COL_YEAR);
+    cout << " | ";
+    printCell(b.getGroup(), COL_GROUP);
+    cout << " |" << endl;
 }
 
-void showArray(Book* arr, int size)
+void showArray(const Book* arr, int size)
 {
     showHeader();
     for (int i = 0; i < size; i++)
         showBook(*(arr + i));
+    printLine();
 }
 
 void inputBookFromKeyboard(Book& b)
@@ -114,62 +184,78 @@ void inputArrayFromKeyboard(Book* arr, int size)
     }
 }
 
-void inputArrayFromTextFile(Book* arr, int size, const string& filename)
+void inputArrayFromTextFile(Book* arr, int size, const char* filename)
 {
     ifstream in(filename);
     if (!in.is_open())
-        throw FileException("Не вдалося відкрити файл тестових даних: " + filename);
+    {
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Не вдалося відкрити файл тестових даних: %s", filename);
+        throw FileException(msg);
+    }
 
+    char line[200];
     for (int i = 0; i < size; i++)
     {
-        string line;
-        if (!getline(in, line))
+        if (!in.getline(line, 200))
+        {
+            in.close();
             throw FileException("У файлі недостатньо даних для масиву");
+        }
 
-        size_t p1 = line.find(';');
-        size_t p2 = (p1 == string::npos) ? string::npos : line.find(';', p1 + 1);
-        size_t p3 = (p2 == string::npos) ? string::npos : line.find(';', p2 + 1);
+        int len = strlen(line);
+        if (len > 0 && line[len - 1] == '\r')
+            line[len - 1] = '\0';
 
-        if (p1 == string::npos || p2 == string::npos || p3 == string::npos)
+        char* p1 = strchr(line, ';');
+        char* p2 = (p1 == NULL) ? NULL : strchr(p1 + 1, ';');
+        char* p3 = (p2 == NULL) ? NULL : strchr(p2 + 1, ';');
+
+        if (p1 == NULL || p2 == NULL || p3 == NULL)
         {
             in.close();
             throw FileException("Невірний формат рядка у файлі тестових даних");
         }
 
-        string a = line.substr(0, p1);
-        string t = line.substr(p1 + 1, p2 - p1 - 1);
-        string yStr = line.substr(p2 + 1, p3 - p2 - 1);
-        string g = line.substr(p3 + 1);
+        *p1 = '\0';
+        *p2 = '\0';
+        *p3 = '\0';
 
-        int y = stoi(yStr);
-
-        (*(arr + i)).setAuthor(a.c_str());
-        (*(arr + i)).setTitle(t.c_str());
-        (*(arr + i)).setYear(y);
-        (*(arr + i)).setGroup(g.c_str());
+        (*(arr + i)).setAuthor(line);
+        (*(arr + i)).setTitle(p1 + 1);
+        (*(arr + i)).setYear(atoi(p2 + 1));
+        (*(arr + i)).setGroup(p3 + 1);
     }
 
     in.close();
 }
 
-void saveOneBookToFile(Book* arr, int size, int index, const string& filename)
+void saveOneBookToFile(const Book* arr, int size, int index, const char* filename)
 {
     if (index < 0 || index >= size)
         throw IndexException("Невірний номер об'єкта для збереження");
 
     ofstream out(filename, ios::binary | ios::app);
     if (!out.is_open())
-        throw FileException("Не вдалося відкрити файл для запису: " + filename);
+    {
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Не вдалося відкрити файл для запису: %s", filename);
+        throw FileException(msg);
+    }
 
     (*(arr + index)).saveToFile(out);
     out.close();
 }
 
-void showOneBookFromFile(const string& filename, int index)
+void showOneBookFromFile(const char* filename, int index)
 {
     ifstream in(filename, ios::binary);
     if (!in.is_open())
-        throw FileException("Не вдалося відкрити файл для читання: " + filename);
+    {
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Не вдалося відкрити файл для читання: %s", filename);
+        throw FileException(msg);
+    }
 
     in.seekg(0, ios::end);
     long fileSize = static_cast<long>(in.tellg());
@@ -178,7 +264,9 @@ void showOneBookFromFile(const string& filename, int index)
     if (index < 0 || index >= count)
     {
         in.close();
-        throw IndexException("Невірний номер об'єкта у файлі (всього записів: " + to_string(count) + ")");
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Невірний номер об'єкта у файлі (всього записів: %d)", count);
+        throw IndexException(msg);
     }
 
     in.seekg(static_cast<streamoff>(index) * sizeof(Book), ios::beg);
@@ -188,13 +276,18 @@ void showOneBookFromFile(const string& filename, int index)
 
     showHeader();
     showBook(temp);
+    printLine();
 }
 
-void saveArrayToFile(Book* arr, int size, const string& filename)
+void saveArrayToFile(const Book* arr, int size, const char* filename)
 {
     ofstream out(filename, ios::binary);
     if (!out.is_open())
-        throw FileException("Не вдалося відкрити файл для запису масиву: " + filename);
+    {
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Не вдалося відкрити файл для запису масиву: %s", filename);
+        throw FileException(msg);
+    }
 
     for (int i = 0; i < size; i++)
         (*(arr + i)).saveToFile(out);
@@ -202,11 +295,15 @@ void saveArrayToFile(Book* arr, int size, const string& filename)
     out.close();
 }
 
-int loadArrayFromFile(Book* arr, int maxSize, const string& filename)
+int loadArrayFromFile(Book* arr, int maxSize, const char* filename)
 {
     ifstream in(filename, ios::binary);
     if (!in.is_open())
-        throw FileException("Не вдалося відкрити файл для читання масиву: " + filename);
+    {
+        char msg[MESSAGE_LEN];
+        snprintf(msg, MESSAGE_LEN, "Не вдалося відкрити файл для читання масиву: %s", filename);
+        throw FileException(msg);
+    }
 
     in.seekg(0, ios::end);
     long fileSize = static_cast<long>(in.tellg());
