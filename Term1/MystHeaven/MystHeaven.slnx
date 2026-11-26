@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="MystHeaven.vcxproj" Id="64e44039-b55c-48da-a0d3-51205f30e2af" />
+</Solution>

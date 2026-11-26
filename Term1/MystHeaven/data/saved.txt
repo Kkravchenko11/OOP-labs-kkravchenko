@@ -1,0 +1,11 @@
+Mage|Mystheaven|Kirill Studio|2026|Магістр Сутінків|80|70|37|100|1;2;3;4;5;6|0:Посох Безодні:12;3:Ампула Живого Попелу:30
+Enemy|Mystheaven|Kirill Studio|2026|Нежить-вартовий|0|0|0|40|8|...
+Enemy|Mystheaven|Kirill Studio|2026|Єретик Згаслого Полум'я|1|1|1|60|14|Вогонь був милосердним. Ми лише просили тепла.
+Enemy|Mystheaven|Kirill Studio|2026|Заводний Лицар|3|1|2|90|18|...
+Enemy|Mystheaven|Kirill Studio|2026|Спустошений Король|2|2|3|106|35|Я не просив бути рятівником. Я просив не вмирати.
+Level|Mystheaven|Kirill Studio|2026|1|Проклятий ліс|1|180
+Level|Mystheaven|Kirill Studio|2026|2|Руїни каплиці|2|150
+Level|Mystheaven|Kirill Studio|2026|3|Катакомби Попелу|3|200
+Level|Mystheaven|Kirill Studio|2026|4|Зала Спустошеного Короля|4|120
+Level|Mystheaven|Kirill Studio|2026|5|Трон Попелу|5|90
+Level|Mystheaven|Kirill Studio|2026|6|Забуте кладовище|3|140

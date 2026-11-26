@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\ComputerGame.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Enemy.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Equipment.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\FileManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\GameCatalog.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\GameTypes.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Level.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Mage.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Player.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Spell.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\SpellBook.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\TextUtils.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Warrior.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\ComputerGame.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Enemy.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Equipment.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\FileManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\GameCatalog.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\GameTypes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Level.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Mage.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Player.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Spell.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\SpellBook.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\TextUtils.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Нацiональний технiчний унiверситет Харкiвський полiтехнiчний iнститут\Рабочий стол\курсовая\Mystheaven\Warrior.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
